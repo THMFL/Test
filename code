@@ -1,0 +1,65 @@
+//
+//
+//	Call with init.sqf:	null = [] execVM "loot.sqf"
+//
+//
+
+
+{
+_mkrtype = getmarkertype _x;
+
+switch (_mkrtype) do {
+case "mil_dot" : {
+_gun = ["arifle_MX_F","arifle_Katiba_F","arifle_Mk20_F","arifle_MXM_F","arifle_MXC_F","arifle_SDAR_F","arifle_TRG20_F","arifle_TRG21_F","srifle_EBR_ARCO_pointer_snds_F","hgun_ACPC2_F","SMG_01_F","SMG_02_F","hgun_Pistol_heavy_01_F","hgun_Pistol_heavy_02_F","hgun_PDW2000_F","LMG_Zafir_F","hgun_Rook40_F","hgun_P07_F","LMG_Mk200_F"] call BIS_fnc_selectRandom;
+_ammo = ["30Rnd_65x39_Caseless_mag", "100Rnd_65x39_Caseless_mag", "30Rnd_65x39_caseless_mag_Tracer", "100Rnd_65x39_caseless_mag_Tracer", "20Rnd_762x45_Mag", "16Rnd_9x21_Mag", "30Rnd_9x21_Mag", "20Rnd_556x45_UW_Mag", "30RND_556x45_Stanag", "200RND_65x39_Cased_box_Tracer","30Rnd_9x21_Mag","6Rnd_45ACP_Cylinder","11Rnd_45ACP_Mag","30Rnd_9x21_Mag","30Rnd_45ACP_Mag_SMG_01","9Rnd_45ACP_Mag","150Rnd_762x51_Box","16Rnd_9x21_Mag","16Rnd_9x21_Mag"] call BIS_fnc_selectRandom;
+_itemw = ["muzzle_snds_H", "muzzle_snds_L", "muzzle_snds_B", "muzzle_snds_H_MG", "optic_Arco", "optic_Hamr", "optic_Aco", "optic_ACO_grn", "optic_Holosight", "acc_flashlight", "acc_pointer_IR", "FirstAidKit", "Toolkit","optic_Hamr","SOS","optic_DMS","FirstAidKit","Rangefinder","Binocular"] call BIS_fnc_selectRandom;
+_weapon1 = createVehicle ["groundweaponHolder",getMarkerPos _x,[], 0, "can_collide"];
+_weapon1 addweaponcargo [_gun,1];
+_weapon1 addmagazinecargo [_ammo,2];
+_weapon1 additemcargo [_itemw,1];
+};
+
+case "n_hq" : {
+_gun = ["arifle_MX_F","arifle_Katiba_F","arifle_Mk20_F","arifle_MXM_F","arifle_MXC_F","arifle_SDAR_F","arifle_TRG20_F","arifle_TRG21_F","srifle_EBR_ARCO_pointer_snds_F","hgun_ACPC2_F","SMG_01_F","SMG_02_F","hgun_Pistol_heavy_01_F","hgun_Pistol_heavy_02_F","hgun_PDW2000_F","LMG_Zafir_F","hgun_Rook40_F","hgun_P07_F","LMG_Mk200_F"] call BIS_fnc_selectRandom;
+_ammo = ["30Rnd_65x39_Caseless_mag", "100Rnd_65x39_Caseless_mag", "30Rnd_65x39_caseless_mag_Tracer", "100Rnd_65x39_caseless_mag_Tracer", "20Rnd_762x45_Mag", "16Rnd_9x21_Mag", "30Rnd_9x21_Mag", "20Rnd_556x45_UW_Mag", "30RND_556x45_Stanag", "200RND_65x39_Cased_box_Tracer","30Rnd_9x21_Mag","6Rnd_45ACP_Cylinder","11Rnd_45ACP_Mag","30Rnd_9x21_Mag","30Rnd_45ACP_Mag_SMG_01","9Rnd_45ACP_Mag","150Rnd_762x51_Box","16Rnd_9x21_Mag","16Rnd_9x21_Mag"] call BIS_fnc_selectRandom;
+_weapon1 = createVehicle ["groundweaponHolder",getMarkerPos _x,[], 0, "can_collide"];
+_weapon1 addweaponcargo [_gun,1];
+_weapon1 addmagazinecargo [_ammo,2];
+};
+
+case "mil_start" : {
+_uni = ["U_B_CombatUniform_mcam", "U_B_CombatUniform_mcam_tshirt", "U_B_CombatUniform_mcam_vest", "U_B_HeliPilotCoveralls", "U_B_Wetsuit", "U_C_Poloshirt_blue", "U_C_Poloshirt_burgundy", "U_C_Poloshirt_stripped", "U_C_Poloshirt_tricolour", "U_C_Poloshirt_salmon", "U_C_Poloshirt_redwhite", "U_C_Commoner1_1", "U_C_Commoner1_2", "U_C_Commoner1_3"] call BIS_fnc_selectRandom;
+_backp = ["B_AssaultPack_khk", "B_AssaultPack_khk_holder", "B_AssaultPack_dgtl", "B_AssaultPack_rgr", "B_AssaultPack_sgg", "B_AssaultPack_blk", "B_AssaultPack_cbr", "B_AssaultPack_mcamo", "B_AssaultPack_ocamo", "B_Kitbag_mcamo", "B_Kitbag_sgg", "B_Kitbag_cbr", "B_FieldPack_blk", "B_FieldPack_blk_DiverExp", "B_FieldPack_blk_DiverTL", "B_FieldPack_ocamo", "B_FieldPack_cbr", "B_FieldPack_cbr_AT", "B_FieldPack_cbr_Repair", "B_Carryall_ocamo", "B_Carryall_oucamo", "Bag_Base", "B_AssaultPack_Base", "B_Kitbag_Base", "B_FieldPack_Base", "B_Bergen_Base", "B_Carryall_Base"] call BIS_fnc_selectRandom;
+_weapon2 = createVehicle ["groundweaponHolder",getMarkerPos _x,[], 0, "can_collide"];
+_weapon2 additemcargo [_uni,1];
+_weapon2 addbackpackcargo [_backp,1];
+};
+
+case "mil_end" : {
+_vest = ["V_Rangemaster_belt", "V_BandollierB_khk", "V_BandollierB_rgr", "V_BandollierB_cbr", "V_PlateCarrier1_rgr", "V_PlateCarrier1_cbr", "V_PlateCarrier2_rgr", "V_PlateCarrierGL_rgr", "V_Chestrig_khk", "V_ChestrigB_rgr", "V_TacVest_khk", "V_TacVest_brn", "V_TacVest_oli", "V_HarnessO_brn", "V_HarnessOGL_brn", "V_RebreatherB", "V_RebreatherIR"] call BIS_fnc_selectRandom;
+_helm = ["H_HelmetB", "H_HelmetB_paint", "H_HelmetB_light", "H_Cap_red", "H_Cap_brn_SERO", "H_Cap_blu", "H_Cap_headphones", "H_PilotHelmetHeli_B", "H_PilotHelmetHeli_O", "H_HelmetO_ocamo", "H_MilCap_ocamo", "H_MilCap_mcamo"] call BIS_fnc_selectRandom;
+_weapon2 = createVehicle ["groundweaponHolder",getMarkerPos _x,[], 0, "can_collide"];
+_weapon2 additemcargo [_vest,1];
+_weapon2 additemcargo [_helm,1];
+};
+
+case "o_hq" : {
+_ammo = ["30Rnd_65x39_Caseless_mag", "100Rnd_65x39_Caseless_mag", "30Rnd_65x39_caseless_mag_Tracer", "100Rnd_65x39_caseless_mag_Tracer", "20Rnd_762x45_Mag", "16Rnd_9x21_Mag", "30Rnd_9x21_Mag", "20Rnd_556x45_UW_Mag", "30RND_556x45_Stanag", "200RND_65x39_Cased_box_Tracer","30Rnd_9x21_Mag","6Rnd_45ACP_Cylinder","11Rnd_45ACP_Mag","30Rnd_9x21_Mag","30Rnd_45ACP_Mag_SMG_01","9Rnd_45ACP_Mag","150Rnd_762x51_Box","16Rnd_9x21_Mag","16Rnd_9x21_Mag"] call BIS_fnc_selectRandom;
+_weapon1 = createVehicle ["groundweaponHolder",getMarkerPos _x,[], 0, "can_collide"];
+_weapon1 addmagazinecargo [_ammo,2];
+};
+
+case "b_hq" : {
+_ammo = ["30Rnd_65x39_Caseless_mag", "100Rnd_65x39_Caseless_mag", "30Rnd_65x39_caseless_mag_Tracer", "100Rnd_65x39_caseless_mag_Tracer", "20Rnd_762x45_Mag", "16Rnd_9x21_Mag", "30Rnd_9x21_Mag", "20Rnd_556x45_UW_Mag", "30RND_556x45_Stanag", "200RND_65x39_Cased_box_Tracer","30Rnd_9x21_Mag","6Rnd_45ACP_Cylinder","11Rnd_45ACP_Mag","30Rnd_9x21_Mag","30Rnd_45ACP_Mag_SMG_01","150Rnd_762x51_Box","16Rnd_9x21_Mag"] call BIS_fnc_selectRandom;
+_weapon1 = createVehicle ["groundweaponHolder",getMarkerPos _x,[], 0, "can_collide"];
+_weapon1 addmagazinecargo [_ammo,1];
+};
+
+case "n_hq;" : {
+_gun = ["NLAW_F", "RPG32_F","Titan_AT","Titan_AP"]
+_ammo = ["RPG32_F", "ATMine_Range_Mag", "APERSMine_Range_Mag", "ClaymoreDirectionalMine_Remote_Mag", "DemoCharge_Remote_Mag", "APERSBoundingMine_Range_Mag", "SLAMDirectionalMine_Wire_Mag", "APERSTripMine_Wire_Mag", "1Rnd_HE_Grenade_shell", "1Rnd_Smoke_Grenade_shell", "1Rnd_SmokeGreen_Grenade_shell", "1Rnd_SmokeYellow_Grenade_shell", "1Rnd_SmokePurple_Grenade_shell", "1Rnd_SmokeBlue_Grenade_shell", "1Rnd_SmokeOrange_Grenade_shell", "SmokeShellRed", "SmokeShell", "SmokeShellGreen", "SmokeShellYellow", "SmokeShellPurple", "SmokeShellBlue", "SmokeShellOrange"] call BIS_fnc_selectRandom;
+_weapon1 = createVehicle ["groundweaponHolder",getMarkerPos _x,[], 0, "can_collide"];
+_weapon1 addmagazinecargo [_ammo,1];
+};
+
+};} foreach allmapmarkers;
