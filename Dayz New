@@ -1,1 +1,44 @@
+_unit = _this select 0;
+_addActionID = _this select 2;
+
+_unit removeAction _addActionID;
+
+
+_markerPos = getMarkerPos "LootMarker";
+
+_weaponArray = [
+	"SMG_01_F",
+	"arifle_Mk20C_plain_F",
+	"CUP_srifle_CZ550",
+	"CUP_srifle_LeeEnfield_rail",
+	"CUP_sgun_M1014",
+	"srifle_DMR_04_F"
+	];
+
+_itemBoxArray = [];
+
+_houseArray = _markerPos nearObjects ["house",100];
+
+
+{
+	buildingPositions = [_x] call BIS_fnc_buildingpositions;
+{
+	if (100 > random 100) then{
+	_weapon = _weaponArray select(floor(random(count _weaponArray)));
+	_itemBox = "WeaponHolderSimulated" createVehicle [0,0,0];
+	_itemBox setPos _x;
+	_itemBox addWeaponCargoGlobal [_weapon,1];	
+	_magazines = getArray (configFile >> "CfgWeapons" >> _weapon >> "Magazines");
+	_mag = _magazines select (floor(random(count _magazines)));
+	_itemBox addMagazineCargoGlobal [_mag,random 3];
+	_itemBoxArray = _itemBoxArray + [_itemBox];
+	}
+
+} forEach buildingPositions;
+} forEach _houseArray;
+
+sleep 3600;
+{
+	deleteVehicle _x;
+} forEach _itemBoxArray;
 
